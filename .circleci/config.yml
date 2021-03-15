@@ -9,5 +9,7 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          command: ./gradlew build
+      - run
+       name: chmod permissions
+       command: chmod +x ./gradlew
+       command: ./gradlew build
