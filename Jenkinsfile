@@ -18,14 +18,19 @@ pipeline {
     }
     stage('Reports'){
       steps{
-        androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '**/lint-results*.xml', unHealthy:''
+        // Run Lint and analyse the results
+        sh './gradlew lintDebug'
+        androidLintParser pattern: '**/lint-results-*.xml'
         junit '**/build/test-results/testReleaseUnitTest/*.xml'
       }
     }
     stage('Deploy'){
-      steps([$class : hockyapp.HockeyappRecorder]){
-        hockeyApp applications: [[apiToken: 'd17953a8b21940d08b5d09326d842d15', downloadAllowed: true, filePath: '**/*.apk', releaseNotesMethod: none(), uploadMethod: appCreation(true)]],baseUrlHolder: [baseUrl: 'https://rink.hockeyapp.net'], debugMode: false, failGracefully: false
+      steps {
+        echo "DEPLOY ME"
       }
+//      steps([$class : hockyapp.HockeyappRecorder]){
+//        hockeyApp applications: [[apiToken: 'd17953a8b21940d08b5d09326d842d15', downloadAllowed: true, filePath: '**/*.apk', releaseNotesMethod: none(), uploadMethod: appCreation(true)]],baseUrlHolder: [baseUrl: 'https://rink.hockeyapp.net'], debugMode: false, failGracefully: false
+//      }
     }
   }
 }
