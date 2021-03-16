@@ -20,6 +20,14 @@ pipeline {
 
         // Analyse the test results and update the build result as appropriate
         junit '**/TEST-*.xml'
+
+        // publish html
+        publishHTML target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: true,
+                reportDir: 'app/build/reports'
+        ]
       }
     }
     stage('Build APK') {
