@@ -171,55 +171,55 @@ pipeline {
       }
     }
   }
-  post {
-    success {
-      script {
-   //     bitbucketStatusNotify(buildState: 'SUCCESSFUL')
-
-        // Notify if the upload succeeded
-        if (env.BRANCH_NAME.startsWith("release")) {
-
-    //      def dropboxFolderLink = "https://www.dropbox.com/home/Android/${DROPBOX_FOLDER}"
-    //      dropboxFolderLink = dropboxFolderLink.replaceAll(" ", "%20")
-
-          currentBuild.displayName = "${currentBuild.displayName}-${APP_VERSION_NAME}-${VERSION_CODE}"
-
-          mail to: "${QA_MAILS}",
-                  cc: "${MANAGMENT_MAILS}, ${DEV_MAILS}",
-                  subject: "${PROJECT_NAME} Android - New Build ${APP_VERSION_NAME}",
-                  body: """\
-                    ${PROJECT_NAME} Android - Build ${APP_VERSION_NAME} is available for testing.
-
-                    The build is uploaded in Google Play Store Internal Test track.
-
-                    Also available in:
-                        Dropbox at - ${dropboxFolderLink}
-                        Jenkins at - ${env.BUILD_URL}
-
-                    Resolved issues and tasks - https://jira.example.com/issues/?jql=project%20%3D%20${JIRA_PROJECT_KEY}%20AND%20fixVersion%20%3D%20${APP_VERSION_NAME}
-
-                    ---------------------------------
-                    This is an automatic message, please do not reply!\
-                    """.stripMargin().stripIndent()
-        }
-      }
-    }
-    failure {
-      script {
-   //     bitbucketStatusNotify(buildState: 'FAILED')
-
-        // Notify developer team of the failure
-        mail to: "${DEV_MAILS}",
-                subject: "${env.JOB_NAME} - Build ${APP_VERSION_NAME} #${env.BUILD_NUMBER} - FAILED!",
-                body: """\
-                ${env.JOB_NAME} - Build ${APP_VERSION_NAME} #${env.BUILD_NUMBER} - FAILED!:
-
-                Check it out at ${env.BUILD_URL}
-
-                ---------------------------------
-                This is an automatic message, please do not reply!\
-                """.stripMargin().stripIndent()
-      }
-    }
-  }
+//  post {
+//    success {
+//      script {
+//   //     bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+//
+//        // Notify if the upload succeeded
+//        if (env.BRANCH_NAME.startsWith("release")) {
+//
+//    //      def dropboxFolderLink = "https://www.dropbox.com/home/Android/${DROPBOX_FOLDER}"
+//    //      dropboxFolderLink = dropboxFolderLink.replaceAll(" ", "%20")
+//
+//          currentBuild.displayName = "${currentBuild.displayName}-${APP_VERSION_NAME}-${VERSION_CODE}"
+//
+////          mail to: "${QA_MAILS}",
+////                  cc: "${MANAGMENT_MAILS}, ${DEV_MAILS}",
+////                  subject: "${PROJECT_NAME} Android - New Build ${APP_VERSION_NAME}",
+////                  body: """\
+////                    ${PROJECT_NAME} Android - Build ${APP_VERSION_NAME} is available for testing.
+////
+////                    The build is uploaded in Google Play Store Internal Test track.
+////
+////                    Also available in:
+////                        Dropbox at - ${dropboxFolderLink}
+////                        Jenkins at - ${env.BUILD_URL}
+////
+////                    Resolved issues and tasks - https://jira.example.com/issues/?jql=project%20%3D%20${JIRA_PROJECT_KEY}%20AND%20fixVersion%20%3D%20${APP_VERSION_NAME}
+////
+////                    ---------------------------------
+////                    This is an automatic message, please do not reply!\
+////                    """.stripMargin().stripIndent()
+//        }
+//      }
+//    }
+////    failure {
+////      script {
+////   //     bitbucketStatusNotify(buildState: 'FAILED')
+////
+////        // Notify developer team of the failure
+//////        mail to: "${DEV_MAILS}",
+//////                subject: "${env.JOB_NAME} - Build ${APP_VERSION_NAME} #${env.BUILD_NUMBER} - FAILED!",
+//////                body: """\
+//////                ${env.JOB_NAME} - Build ${APP_VERSION_NAME} #${env.BUILD_NUMBER} - FAILED!:
+//////
+//////                Check it out at ${env.BUILD_URL}
+//////
+//////                ---------------------------------
+//////                This is an automatic message, please do not reply!\
+//////                """.stripMargin().stripIndent()
+////      }
+////    }
+//  }
 }
