@@ -1,7 +1,7 @@
 pipeline {
   agent {
     // Run on a build agent where we have the Android SDK installed
-    label 'android'
+    docker { image "androidsdk/android-30:latest"}
   }
   environment {
     // Fastlane Environment Variables
