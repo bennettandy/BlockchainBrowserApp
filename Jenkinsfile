@@ -1,7 +1,7 @@
 pipeline {
-  //agent {
-  //        docker { image 'androidsdk/android-30:latest' }
-  //}
+  agent {
+          docker { image 'androidsdk/android-30:latest' }
+  }
   options {
     // Stop the build early in case of compile or test failures
     skipStagesAfterUnstable()
@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage("Fix the permission issue") {
 
-      agent docker { image 'androidsdk/android-30:latest' }
+      agent any
 
       steps {
         sh "sudo chown root:jenkins /run/docker.sock"
