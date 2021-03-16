@@ -10,7 +10,7 @@ pipeline {
     stage('Compile') {
       steps {
         // Compile the app and its dependencies
-        sh './gradlew compileDebugSources'
+        sh './gradlew clean compileDebugSources'
       }
     }
     stage('Unit test') {
@@ -23,7 +23,7 @@ pipeline {
 
         // Fool Jenkins into thinking the tests results are new
         sh 'find . -name "TEST-*.xml" -exec touch {} \\;'
-        junit '**/build/test-results/test/TEST-*.xml'
+        junit 'app/build/test-results/test/TEST-*.xml'
       }
     }
     stage('Build APK') {
