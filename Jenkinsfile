@@ -22,8 +22,8 @@ pipeline {
         junit '**/TEST-*.xml'
 
         // Fool Jenkins into thinking the tests results are new
-        sh 'find . -name "TEST-*.xml" -exec touch {} \\;'
-        junit 'app/build/test-results/test/TEST-*.xml'
+       // sh 'find . -name "TEST-*.xml" -exec touch {} \\;'
+        junit '**/build/test-results/test/TEST-*.xml'
       }
     }
     stage('Build APK') {
