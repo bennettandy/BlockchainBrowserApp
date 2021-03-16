@@ -20,7 +20,7 @@ pipeline {
       steps{
         // Run Lint and analyse the results
         sh './gradlew lintDebug'
-        androidLintParser pattern: '**/lint-results-*.xml'
+        androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: 'app/build/reports/**/*', unHealthy: ''
         junit '**/build/test-results/testReleaseUnitTest/*.xml'
       }
     }
