@@ -20,14 +20,6 @@ pipeline {
 
         // Analyse the test results and update the build result as appropriate
         junit '**/TEST-*.xml'
-
-        // publish html
-        publishHTML target: [
-                allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                keepAll: true,
-                reportDir: 'app/build/reports/tests/**/*.html'
-        ]
       }
     }
     stage('Build APK') {
@@ -44,14 +36,6 @@ pipeline {
         // Run Lint and analyse the results
         sh './gradlew lintDebug'
         androidLint pattern: '**/lint-results-*.xml'
-
-        // publish html
-        publishHTML target: [
-                allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                keepAll: true,
-                reportDir: 'app/build/reports/*.html'
-        ]
       }
     }
     stage('Deploy') {
