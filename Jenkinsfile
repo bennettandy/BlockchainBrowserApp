@@ -47,10 +47,10 @@ pipeline {
         // Assuming a file credential has been added to Jenkins, with the ID 'my-app-signing-keystore',
         // this will export an environment variable during the build, pointing to the absolute path of
         // the stored Android keystore file.  When the build ends, the temporarily file will be removed.
-        SIGNING_KEYSTORE = credentials('my-app-signing-keystore')
+   //     SIGNING_KEYSTORE = credentials('my-app-signing-keystore')
 
         // Similarly, the value of this variable will be a password stored by the Credentials Plugin
-        SIGNING_KEY_PASSWORD = credentials('my-app-signing-password')
+   //     SIGNING_KEY_PASSWORD = credentials('my-app-signing-password')
       }
       steps {
         // Build the app in release mode, and sign the APK using the environment variables
@@ -60,12 +60,12 @@ pipeline {
         archiveArtifacts '**/*.apk'
 
         // Upload the APK to Google Play
-        androidApkUpload googleCredentialsId: 'Google Play', apkFilesPattern: '**/*-release.apk', trackName: 'beta'
+  //      androidApkUpload googleCredentialsId: 'Google Play', apkFilesPattern: '**/*-release.apk', trackName: 'beta'
       }
       post {
         success {
           // Notify if the upload succeeded
-          mail to: 'beta-testers@example.com', subject: 'New build available!', body: 'Check it out!'
+          mail to: 'andrew@avsoftware.co.uk', subject: 'New build available!', body: 'Check it out!'
         }
       }
     }
@@ -73,7 +73,7 @@ pipeline {
   post {
     failure {
       // Notify developer team of the failure
-      mail to: 'android-devs@example.com', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
+      mail to: 'andrew@avsoftware.co.uk', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
     }
   }
 }
