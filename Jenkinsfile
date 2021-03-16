@@ -75,11 +75,11 @@ pipeline {
         sh './gradlew testDebugUnitTest'
 
         // Analyse the test results and update the build result as appropriate
-        junit '**/TEST-*.xml'
+        junit '**/test-results/*.xml'
 
         // Fool Jenkins into thinking the tests results are new
        // sh 'find . -name "TEST-*.xml" -exec touch {} \\;'
-        junit '**/build/test-results/test/TEST-*.xml'
+//        junit '**/build/test-results/test/TEST-*.xml'
       }
     }
 
