@@ -39,7 +39,7 @@ pipeline {
   environment {
     appName = 'blockchain-browser'
 
-    SIGNING_KEYSTORE = credentials('keyPassword')
+    SIGNING_KEY_PASSWORD = credentials('keyPassword')
     KEY_ALIAS = credentials('keyAlias')
     SIGNING_KEYSTORE = credentials('keyStore')
     STORE_PASSWORD = credentials('storePassword')
@@ -118,7 +118,7 @@ pipeline {
         // Only execute this stage when building from the `beta` branch
         branch 'master'
       }
-   
+
       steps {
         // Build the app in release mode, and sign the APK using the environment variables
         sh './gradlew assembleRelease'
