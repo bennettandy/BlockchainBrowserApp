@@ -174,13 +174,13 @@ pipeline {
   post {
     success {
       script {
-        bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+   //     bitbucketStatusNotify(buildState: 'SUCCESSFUL')
 
         // Notify if the upload succeeded
         if (env.BRANCH_NAME.startsWith("release")) {
 
-          def dropboxFolderLink = "https://www.dropbox.com/home/Android/${DROPBOX_FOLDER}"
-          dropboxFolderLink = dropboxFolderLink.replaceAll(" ", "%20")
+    //      def dropboxFolderLink = "https://www.dropbox.com/home/Android/${DROPBOX_FOLDER}"
+    //      dropboxFolderLink = dropboxFolderLink.replaceAll(" ", "%20")
 
           currentBuild.displayName = "${currentBuild.displayName}-${APP_VERSION_NAME}-${VERSION_CODE}"
 
@@ -206,7 +206,7 @@ pipeline {
     }
     failure {
       script {
-        bitbucketStatusNotify(buildState: 'FAILED')
+   //     bitbucketStatusNotify(buildState: 'FAILED')
 
         // Notify developer team of the failure
         mail to: "${DEV_MAILS}",
