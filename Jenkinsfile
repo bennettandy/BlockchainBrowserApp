@@ -64,15 +64,6 @@ pipeline {
        // androidApkUpload googleCredentialsId: 'Google Play', apkFilesPattern: '**/*-release.apk', trackName: 'beta'
       }
       post {
-        always {
-          // publish html
-          publishHTML target: [
-                  allowMissing: false,
-                  alwaysLinkToLastBuild: false,
-                  keepAll: true,
-                  reportDir: 'app/build/reports/**'
-          ]
-        }
         success {
           // Notify if the upload succeeded
           mail to: 'andrew@avsoftware.co.uk', subject: 'New build available!', body: 'Check it out!'
@@ -81,6 +72,15 @@ pipeline {
     }
   }
   post {
+    always {
+      // publish html
+      publishHTML target: [
+              allowMissing: false,
+              alwaysLinkToLastBuild: false,
+              keepAll: true,
+              reportDir: 'app/build/reports/**'
+      ]
+    }
     failure {
       // Notify developer team of the failure
       mail to: 'andrew@avsoftware.co.uk', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
