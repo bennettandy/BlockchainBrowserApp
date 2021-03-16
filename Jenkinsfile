@@ -10,30 +10,23 @@ pipeline {
     stage('Compile') {
       steps {
         // Compile the app and its dependencies
-        sh './gradlew compileDebugSources'
+        sh './gradle compileDebugSources'
       }
     }
     stage('Unit test') {
       steps {
         // Compile and run the unit tests for the app and its dependencies
-        sh './gradlew testDebugUnitTest'
+        sh './gradle testDebugUnitTest'
 
         // Analyse the test results and update the build result as appropriate
         junit '**/TEST-*.xml'
 
-        // publish html
-        publishHTML target: [
-                allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                keepAll: true,
-                reportDir: 'app/build/reports'
-        ]
       }
     }
     stage('Build APK') {
       steps {
         // Finish building and packaging the APK
-        sh './gradlew assembleDebug'
+        sh './gradle assembleDebug'
 
         // Archive the APKs so that they can be downloaded from Jenkins
         archiveArtifacts '**/*.apk'
@@ -42,7 +35,7 @@ pipeline {
     stage('Static analysis') {
       steps {
         // Run Lint and analyse the results
-        sh './gradlew lintDebug'
+        sh './gradle lintDebug'
         androidLint pattern: '**/lint-results-*.xml'
       }
     }
@@ -62,7 +55,7 @@ pipeline {
       }
       steps {
         // Build the app in release mode, and sign the APK using the environment variables
-        sh './gradlew assembleRelease'
+        sh './gradle assembleRelease'
 
         // Archive the APKs so that they can be downloaded from Jenkins
         archiveArtifacts '**/*.apk'
@@ -71,6 +64,7 @@ pipeline {
        // androidApkUpload googleCredentialsId: 'Google Play', apkFilesPattern: '**/*-release.apk', trackName: 'beta'
       }
       post {
+
         success {
           // Notify if the upload succeeded
           mail to: 'andrew@avsoftware.co.uk', subject: 'New build available!', body: 'Check it out!'
@@ -79,6 +73,15 @@ pipeline {
     }
   }
   post {
+    always {
+      // publish html
+      publishHTML target: [
+              allowMissing: false,
+              alwaysLinkToLastBuild: false,
+              keepAll: true,
+              reportDir: 'app/build/reports/**'
+      ]
+    }
     failure {
       // Notify developer team of the failure
       mail to: 'andrew@avsoftware.co.uk', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
