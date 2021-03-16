@@ -39,10 +39,10 @@ pipeline {
   environment {
     appName = 'blockchain-browser'
 
-    SIGNING_KEY_PASSWORD = credentials('keyPassword')
-    KEY_ALIAS = credentials('keyAlias')
-    SIGNING_KEYSTORE = credentials('keyStore')
-    STORE_PASSWORD = credentials('storePassword')
+//    SIGNING_KEY_PASSWORD = credentials('keyPassword')
+//    KEY_ALIAS = credentials('keyAlias')
+//    SIGNING_KEYSTORE = credentials('keyStore')
+//    STORE_PASSWORD = credentials('storePassword')
   }
 
   options {
