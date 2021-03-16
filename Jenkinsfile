@@ -58,30 +58,30 @@ pipeline {
       }
     }
 
-    stage('Run Tests') {
-      steps {
-        echo 'Running Tests'
-        script {
-          VARIANT = getBuildType()
-          sh "./gradlew test${VARIANT}UnitTest"
-        }
-        junit "**/TEST-*.xml"
-      }
-    }
-
-//    stage('Unit test') {
+//    stage('Run Tests') {
 //      steps {
-//        // Compile and run the unit tests for the app and its dependencies
-//        sh './gradlew testDebugUnitTest'
-//
-//        // Analyse the test results and update the build result as appropriate
-//        junit '**/TEST-*.xml'
-//
-//        // Fool Jenkins into thinking the tests results are new
-//       // sh 'find . -name "TEST-*.xml" -exec touch {} \\;'
-//        junit '**/build/test-results/test/TEST-*.xml'
+//        echo 'Running Tests'
+//        script {
+//          VARIANT = getBuildType()
+//          sh "./gradlew test${VARIANT}UnitTest"
+//        }
+//        junit "**/TEST-*.xml"
 //      }
 //    }
+
+    stage('Unit test') {
+      steps {
+        // Compile and run the unit tests for the app and its dependencies
+        sh './gradlew testDebugUnitTest'
+
+        // Analyse the test results and update the build result as appropriate
+        junit '**/TEST-*.xml'
+
+        // Fool Jenkins into thinking the tests results are new
+       // sh 'find . -name "TEST-*.xml" -exec touch {} \\;'
+        junit '**/build/test-results/test/TEST-*.xml'
+      }
+    }
 
     stage('Build Bundle') {
       when { expression { return isDeployCandidate() } }
@@ -129,18 +129,18 @@ pipeline {
         // Upload the APK to Google Play
        // androidApkUpload googleCredentialsId: 'Google Play', apkFilesPattern: '**/*-release.apk', trackName: 'beta'
       }
-      post {
-        success {
-          // Notify if the upload succeeded
-          mail to: 'andrew@avsoftware.co.uk', subject: 'New build available!', body: 'Check it out!'
-        }
-      }
+//      post {
+//        success {
+//          // Notify if the upload succeeded
+//          mail to: 'andrew@avsoftware.co.uk', subject: 'New build available!', body: 'Check it out!'
+//        }
+//      }
     }
   }
-  post {
-    failure {
-      // Notify developer team of the failure
-      mail to: 'andrew@avsoftware.co.uk', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
-    }
-  }
+//  post {
+//    failure {
+//      // Notify developer team of the failure
+//      mail to: 'andrew@avsoftware.co.uk', subject: 'Oops!', body: "Build ${env.BUILD_NUMBER} failed; ${env.BUILD_URL}"
+//    }
+//  }
 }
