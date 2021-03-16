@@ -31,15 +31,25 @@ def isDeployCandidate() {
   return ("${env.BRANCH_NAME}" =~ /(develop|master)/)
 }
 
-
 pipeline {
   agent {
           docker { image 'androidsdk/android-30:latest' }
   }
+
+  environment {
+    appName = 'blockchain-browser'
+
+    SIGNING_KEYSTORE = credentials('keyPassword')
+    KEY_ALIAS = credentials('keyAlias')
+    SIGNING_KEYSTORE = credentials('keyStore')
+    STORE_PASSWORD = credentials('storePassword')
+  }
+
   options {
     // Stop the build early in case of compile or test failures
     skipStagesAfterUnstable()
   }
+
   stages {
     stage('Compile') {
       steps {
@@ -47,19 +57,43 @@ pipeline {
         sh './gradlew clean compileDebugSources'
       }
     }
-    stage('Unit test') {
+
+    stage('Run Tests') {
       steps {
-        // Compile and run the unit tests for the app and its dependencies
-        sh './gradlew testDebugUnitTest'
-
-        // Analyse the test results and update the build result as appropriate
-        junit '**/TEST-*.xml'
-
-        // Fool Jenkins into thinking the tests results are new
-       // sh 'find . -name "TEST-*.xml" -exec touch {} \\;'
-        junit '**/build/test-results/test/TEST-*.xml'
+        echo 'Running Tests'
+        script {
+          VARIANT = getBuildType()
+          sh "./gradlew test${VARIANT}UnitTest"
+        }
+        junit "**/TEST-*.xml"
       }
     }
+
+//    stage('Unit test') {
+//      steps {
+//        // Compile and run the unit tests for the app and its dependencies
+//        sh './gradlew testDebugUnitTest'
+//
+//        // Analyse the test results and update the build result as appropriate
+//        junit '**/TEST-*.xml'
+//
+//        // Fool Jenkins into thinking the tests results are new
+//       // sh 'find . -name "TEST-*.xml" -exec touch {} \\;'
+//        junit '**/build/test-results/test/TEST-*.xml'
+//      }
+//    }
+
+    stage('Build Bundle') {
+      when { expression { return isDeployCandidate() } }
+      steps {
+        echo 'Building'
+        script {
+          VARIANT = getBuildType()
+          sh "./gradlew -PstorePass=${STORE_PASSWORD} -Pkeystore=${KEYSTORE} -Palias=${KEY_ALIAS} -PkeyPass=${KEY_PASSWORD} bundle${VARIANT}"
+        }
+      }
+    }
+
     stage('Build APK') {
       steps {
         // Finish building and packaging the APK
@@ -69,10 +103,13 @@ pipeline {
         archiveArtifacts '**/*.apk'
       }
     }
+
     stage('Static analysis') {
       steps {
         // Run Lint and analyse the results
-        sh './gradlew lintDebug'
+        script {
+          sh './gradlew lintDebug'
+        }
         androidLint pattern: '**/lint-results-*.xml'
       }
     }
