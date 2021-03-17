@@ -5,12 +5,12 @@ pipeline {
   }
   environment {
     GOOGLE_API_KEY = credentials('jenkins-google-api-key')
+    GOOGLE_SERVICES_JSON = credentials('google-services-json')
   }
   stages{
     stage('Emulator'){
       steps{
         echo "Pull Emulator Docker Image"
-        echo "${env.GOOGLE_API_KEY}"
         //sh 'docker pull us-docker.pkg.dev/android-emulator-268719/images/28-playstore-x64:30.1.2'
         //echo "Run Emulator"
         //sh 'docker run --publish 8554:8554/tcp --publish 5554:5554/tcp --publish 5555:5555/tcp us-docker.pkg.dev/android-emulator-268719/images/28-playstore-x64:30.1.2'
