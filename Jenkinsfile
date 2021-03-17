@@ -3,14 +3,17 @@ pipeline {
     // Run on a build agent where we have the Android SDK installed
     docker { image "androidsdk/android-30:latest"}
   }
-
+  environment {
+    GOOGLE_API_KEY = credentials('jenkins-google-api-key')
+  }
   stages{
     stage('Emulator'){
       steps{
         echo "Pull Emulator Docker Image"
-        sh 'docker pull us-docker.pkg.dev/android-emulator-268719/images/28-playstore-x64:30.1.2'
-        echo "Run Emulator"
-        sh 'docker run --publish 8554:8554/tcp --publish 5554:5554/tcp --publish 5555:5555/tcp us-docker.pkg.dev/android-emulator-268719/images/28-playstore-x64:30.1.2'
+        echo "${env.GOOGLE_API_KEY}"
+        //sh 'docker pull us-docker.pkg.dev/android-emulator-268719/images/28-playstore-x64:30.1.2'
+        //echo "Run Emulator"
+        //sh 'docker run --publish 8554:8554/tcp --publish 5554:5554/tcp --publish 5555:5555/tcp us-docker.pkg.dev/android-emulator-268719/images/28-playstore-x64:30.1.2'
       }
     }
     stage('Build'){
