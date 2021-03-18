@@ -4,5 +4,5 @@ import io.reactivex.rxjava3.core.Single
 
 interface BlockchainRepository {
     fun currentHashRateGigaHashes(): Single<Long>
-    fun flushCache(): Unit
+    fun flushCache()
 }

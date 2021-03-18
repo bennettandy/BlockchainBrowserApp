@@ -66,6 +66,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
 
+    // timber logging
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
