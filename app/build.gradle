@@ -142,5 +142,6 @@ sonarqube {
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.login", "build"
         property "sonar.password", "build123"
+        property "systemProp.sonar.host.url", "http://sonarqube:9000"
     }
 }
