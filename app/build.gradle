@@ -140,8 +140,7 @@ sonarqube {
         property "sonar.sources", "src/main/java/"
         property "sonar.binaries", "build"
         property "sonar.sourceEncoding", "UTF-8"
-        property "sonar.login", "build"
-        property "sonar.password", "build123"
+        property "sonar.login", "35dfbe19d42bd70059627fc9334d86484a280364"
         property "systemProp.sonar.host.url", "http://sonarqube:9000"
     }
 }
