@@ -140,6 +140,6 @@ sonarqube {
         property "sonar.binaries", "build"
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.login", "35dfbe19d42bd70059627fc9334d86484a280364"
-        property "sonar.host.url", "http://sonarqube:9000"
+        property "sonar.host.url", "http://192.168.0.13:9000"
     }
 }
