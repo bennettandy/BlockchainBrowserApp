@@ -25,7 +25,7 @@ pipeline {
     stage('Reports'){
       steps{
         // Run Lint and analyse the results
-        sh './gradlew lintDebug'
+        sh './gradlew lintDebug sonar'
         junit '**/build/test-results/testReleaseUnitTest/*.xml'
 
         recordIssues(
