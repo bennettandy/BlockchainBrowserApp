@@ -30,10 +30,6 @@ class HomeFragment : Fragment() {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         binding.viewmodel = homeViewModel
 
-        val textView: TextView = binding.textHome
-        homeViewModel.hashRate.observe(viewLifecycleOwner, Observer {
-            textView.text = getString(R.string.home_hash_rate, it)
-        })
         return binding.root
     }
 }
