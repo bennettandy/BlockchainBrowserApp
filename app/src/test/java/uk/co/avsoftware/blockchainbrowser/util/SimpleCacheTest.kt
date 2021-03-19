@@ -5,6 +5,7 @@ import org.junit.Test
 import org.junit.rules.TestRule
 import org.threeten.extra.MutableClock
 import uk.co.avsoftware.blockchainbrowser.service.util.SimpleCache
+import java.lang.Thread.sleep
 import java.time.Instant
 import java.time.ZoneId
 
@@ -27,6 +28,25 @@ class SimpleCacheTest {
 
         // Then
         testObserver.assertValue("My Stored Value")
+        testObserver.assertComplete()
+    }
+
+    @Test
+    fun testReplaceValue(){
+
+        // Given
+        val cache = SimpleCache<String>(clock)
+
+        // When
+        cache.onNext("My Old Stored Value")
+
+        cache.onNext("My New Stored Value")
+
+        val testObserver = cache.value().test()
+
+        // Then
+        testObserver.assertValue("My New Stored Value")
+        testObserver.assertComplete()
     }
 
     @Test

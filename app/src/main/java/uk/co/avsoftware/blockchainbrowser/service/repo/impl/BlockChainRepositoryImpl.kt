@@ -15,7 +15,8 @@ class BlockChainRepositoryImpl @Inject constructor(private val blockchainApi: Bl
     private val simpleCache: SimpleCache<Long> = SimpleCache(clock)
 
     override fun currentHashRateGigaHashes(): Single<Long> = simpleCache.value()
-        .doOnNext { Timber.i("$it From Cache") }
+        .doOnSuccess { Timber.i("$it From Cache") }
+        .toObservable()
         .mergeWith(blockchainApi.currentHashRateGigaHashes()
             .doOnSuccess { Timber.i("$it From API") }
             .timeout(2000, TimeUnit.MILLISECONDS)
