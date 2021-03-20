@@ -19,13 +19,13 @@ pipeline {
     stage('Build'){
       steps{
         //sh 'rm -rf /var/lib/jenkins/workspace/kotlin_android_pipeline/app/build/test-results/testReleaseUnitTest/TEST-com.yodle.android.kotlindemo.service.GitHubApiServiceTest.xml'
-        sh './gradlew clean test build'
+        sh './gradlew clean test build sonar'
       }
     }
     stage('Reports'){
       steps{
         // Run Lint and analyse the results
-        sh './gradlew lintDebug sonar'
+        sh './gradlew lintDebug'
         junit '**/build/test-results/testReleaseUnitTest/*.xml'
 
         recordIssues(

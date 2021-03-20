@@ -9,7 +9,7 @@ import java.time.Clock
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class BlockChainRepositoryImpl @Inject constructor(private val blockchainApi: BlockchainApi, private val clock: Clock = Clock.systemDefaultZone()) :
+class BlockChainRepositoryImpl @Inject constructor(private val blockchainApi: BlockchainApi, clock: Clock = Clock.systemDefaultZone()) :
     BlockchainRepository {
 
     private val simpleCache: SimpleCache<Long> = SimpleCache(clock)
