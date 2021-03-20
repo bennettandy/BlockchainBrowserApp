@@ -146,7 +146,7 @@ sonarqube {
         property "sonar.projectVersion", "0.1"
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.login", "926ed1fdde12d8cd638e5dc6b7233a2e8522f22b"
-        property "sonar.host.url", "http://sonarqube:9000"
+        property "sonar.host.url", "http://192.168.0.13:9000"
         property "sonar.coverage.jacoco.xmlReportPaths", "build/test-results/**/*.xml"
 
     }
