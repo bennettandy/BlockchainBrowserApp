@@ -31,7 +31,7 @@ pipeline {
     stage('Sonar'){
       steps{
         //sh 'rm -rf /var/lib/jenkins/workspace/kotlin_android_pipeline/app/build/test-results/testReleaseUnitTest/TEST-com.yodle.android.kotlindemo.service.GitHubApiServiceTest.xml'
-        sh './gradlew sonarqube'
+        sh './gradlew --debug sonarqube'
       }
     }
     stage('Reports'){
