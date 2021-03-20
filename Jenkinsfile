@@ -1,7 +1,7 @@
 pipeline {
   agent {
     // Run on a build agent where we have the Android SDK installed
-    docker { image "docker-android-sdk/android-30:latest"}
+    docker { image "avsoftware/android-agent:latest"}
   }
   environment {
     GOOGLE_API_KEY = credentials('jenkins-google-api-key')
