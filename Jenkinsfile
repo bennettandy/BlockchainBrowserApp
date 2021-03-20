@@ -10,8 +10,10 @@ pipeline {
   stages{
     stage('Emulator'){
       steps{
-        echo "Pull Emulator Docker Image"
-        //sh 'docker pull us-docker.pkg.dev/android-emulator-268719/images/28-playstore-x64:30.1.2'
+        echo "Check installed packages"
+        sh 'docker run -it --rm androidsdk/android-30:latest sdkmanager --list'
+        echo "List Emulators"
+        sh 'docker run -it --rm androidsdk/android-30:latest avdmanager list avd'
         //echo "Run Emulator"
         //sh 'docker run --publish 8554:8554/tcp --publish 5554:5554/tcp --publish 5555:5555/tcp us-docker.pkg.dev/android-emulator-268719/images/28-playstore-x64:30.1.2'
       }
@@ -19,7 +21,13 @@ pipeline {
     stage('Build'){
       steps{
         //sh 'rm -rf /var/lib/jenkins/workspace/kotlin_android_pipeline/app/build/test-results/testReleaseUnitTest/TEST-com.yodle.android.kotlindemo.service.GitHubApiServiceTest.xml'
-        sh './gradlew clean test build sonar'
+        sh './gradlew clean test build'
+      }
+    }
+    stage('Sonar'){
+      steps{
+        //sh 'rm -rf /var/lib/jenkins/workspace/kotlin_android_pipeline/app/build/test-results/testReleaseUnitTest/TEST-com.yodle.android.kotlindemo.service.GitHubApiServiceTest.xml'
+        sh './gradlew sonarqube'
       }
     }
     stage('Reports'){
