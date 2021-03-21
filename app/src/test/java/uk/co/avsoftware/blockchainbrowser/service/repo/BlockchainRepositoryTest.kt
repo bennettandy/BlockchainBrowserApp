@@ -8,7 +8,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
-import uk.co.avsoftware.blockchainbrowser.service.repo.api.BlockchainApi
+import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainApi
 import uk.co.avsoftware.blockchainbrowser.service.repo.impl.BlockChainRepositoryImpl
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
@@ -62,7 +62,7 @@ class BlockchainRepositoryTest {
 
         testScheduler.advanceTimeBy(2500, TimeUnit.MILLISECONDS)
 
-        testObserver.assertFailure(TimeoutException::class.java)
+        testObserver.assertValue(0L)
 
     }
 }
