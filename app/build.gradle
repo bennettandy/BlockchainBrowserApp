@@ -3,7 +3,6 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-    //id 'com.google.gms.google-services'
     id "org.sonarqube" version "3.1.1"
 }
 
@@ -62,7 +61,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.4'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.4'
     implementation 'com.google.truth:truth:1.1.2'
-    implementation "commons-validator:commons-validator:1.4.0"
+    implementation "commons-validator:commons-validator:1.7"
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
@@ -101,7 +100,7 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
     // Lifecycle Reactive Streams
-    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
 
     // Firebase BOM
     //implementation platform('com.google.firebase:firebase-bom:26.7.0')
@@ -143,12 +142,26 @@ sonarqube {
         property "sonar.language", "kotlin"
         property "sonar.sources", "src/main/java"
         property "sonar.tests", "src/test/java"
-        property "sonar.binaries", "build"
         property "sonar.projectVersion", "0.1"
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.login", "926ed1fdde12d8cd638e5dc6b7233a2e8522f22b"
         property "sonar.host.url", "http://192.168.0.13:9000"
-        property "sonar.coverage.jacoco.xmlReportPaths", "build/test-results/**/*.xml"
+        //property "sonar.java.binaries", "build/intermediates/javac/debug/classes"
+        //property "sonar.jacoco.reportPaths","build/jacoco/testDebugUnitTest.exec"
 
+
+        property "sonar.test.inclusions", "**/*Test*/**"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.exclusions", '**/*Test*/**,' +
+                'build/**' +
+                '*.json,' +
+                '**/*test*/**,' +
+                '**/.gradle/**,' +
+                '**/R.class'
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.jacoco.reportPath", "build/jacoco/testDebugUnitTest.exec"
+        property "sonar.junit.reportPaths", "build/test-results/testDebugUnitTest/*.xml"
+        //property "sonar.coverage.jacoco.xmlReportPaths", "**/jacoco/jacocoTestReport.xml"
+        //property "sonar.coverage.exclusions", "${coverageExclusions.join(', ')}"
     }
 }
