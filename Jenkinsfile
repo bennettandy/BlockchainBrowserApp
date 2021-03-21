@@ -39,7 +39,7 @@ pipeline {
 
                 recordIssues(
                         enabledForFailure: true, aggregatingResults: true,
-                        tools: [java(), checkStyle(pattern: 'lint-results*.xml', reportEncoding: 'UTF-8')]
+                        tools: [java(), checkStyle(pattern: 'lint-results.xml', reportEncoding: 'UTF-8')]
                 )
             }
         }
