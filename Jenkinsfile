@@ -30,7 +30,14 @@ pipeline {
     stage('Build'){
       steps{
         //sh 'rm -rf /var/lib/jenkins/workspace/kotlin_android_pipeline/app/build/test-results/testReleaseUnitTest/TEST-com.yodle.android.kotlindemo.service.GitHubApiServiceTest.xml'
-        sh './gradlew clean test build sonarqube'
+        sh './gradlew clean test build lintDebug sonarqube'
+
+        junit '**/build/test-results/testDebugUnitTest/*.xml'
+
+        recordIssues(
+                enabledForFailure: true, aggregatingResults: true,
+                tools: [java(), checkStyle(pattern: 'lint-results*.xml', reportEncoding: 'UTF-8')]
+        )
       }
     }
 //    stage('Sonar'){
@@ -39,18 +46,18 @@ pipeline {
 //        sh './gradlew sonarqube'
 //      }
 //    }
-    stage('Reports'){
-      steps{
-        // Run Lint and analyse the results
-        sh './gradlew lintDebug'
-        junit '**/build/test-results/testReleaseUnitTest/*.xml'
-
-        recordIssues(
-                enabledForFailure: true, aggregatingResults: true,
-                tools: [java(), checkStyle(pattern: 'lint-results*.xml', reportEncoding: 'UTF-8')]
-        )
-      }
-    }
+//    stage('Reports'){
+//      steps{
+//        // Run Lint and analyse the results
+//        sh './gradlew lintDebug'
+//        junit '**/build/test-results/testReleaseUnitTest/*.xml'
+//
+//        recordIssues(
+//                enabledForFailure: true, aggregatingResults: true,
+//                tools: [java(), checkStyle(pattern: 'lint-results*.xml', reportEncoding: 'UTF-8')]
+//        )
+//      }
+//    }
     stage('Deploy'){
       steps {
         echo "DEPLOY ME"
