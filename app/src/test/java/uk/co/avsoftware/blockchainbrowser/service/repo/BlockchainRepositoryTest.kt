@@ -62,7 +62,7 @@ class BlockchainRepositoryTest {
 
         testScheduler.advanceTimeBy(2500, TimeUnit.MILLISECONDS)
 
-        testObserver.assertFailure(TimeoutException::class.java)
+        testObserver.assertValue(0L)
 
     }
 }
