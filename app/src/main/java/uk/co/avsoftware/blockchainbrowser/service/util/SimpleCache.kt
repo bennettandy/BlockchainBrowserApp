@@ -24,3 +24,15 @@ class SimpleCache<T> @Inject constructor(private val clock: Clock, private val t
         const val DEFAULT_TTL = 60000L
     }
 }
+//
+//class MultiValueCache @Inject constructor(private val clock: Clock, private val ttlMillis: Long = SimpleCache.DEFAULT_TTL) {
+//
+//    private val map: ConcurrentMap<String, CacheEntry> = ConcurrentHashMap()
+//
+//    fun onNext( key: String, value: Any ) = map.put(key, CacheEntry(clock.instant(), value))
+//
+//    fun value(key: String, cla): Observable<Any>
+//
+//    data class CacheEntry(val timestamp: Instant, val entry: Any)
+//
+//}
