@@ -4,7 +4,7 @@ import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import java.math.BigDecimal
 
-interface BlockchainApi {
+interface BlockchainSimpleQueryApi {
 
     /**
      * Estimated network hash rate in gigahash

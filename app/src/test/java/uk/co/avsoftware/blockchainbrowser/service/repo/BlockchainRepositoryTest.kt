@@ -8,10 +8,10 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
-import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainApi
+import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainRestApi
+import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainSimpleQueryApi
 import uk.co.avsoftware.blockchainbrowser.service.repo.impl.BlockChainRepositoryImpl
 import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeoutException
 
 
 class BlockchainRepositoryTest {
@@ -33,11 +33,13 @@ class BlockchainRepositoryTest {
     @Test
     fun `successful hash rate call`() {
 
-        val blockchainApi = Mockito.mock(BlockchainApi::class.java)
+        val blockchainApi = Mockito.mock(BlockchainSimpleQueryApi::class.java)
+
+        val restApi = Mockito.mock(BlockchainRestApi::class.java)
 
         Mockito.`when`(blockchainApi.currentHashRateGigaHashes()).thenReturn(Single.just(209080L))
 
-        val repository: BlockchainRepository = BlockChainRepositoryImpl(blockchainApi)
+        val repository: BlockchainRepository = BlockChainRepositoryImpl(blockchainApi, restApi)
 
         val testObserver: TestObserver<Long> = repository.currentHashRateGigaHashes().test()
 
@@ -50,11 +52,13 @@ class BlockchainRepositoryTest {
     @Test
     fun `time out hash rate call`() {
 
-        val blockchainApi = Mockito.mock(BlockchainApi::class.java)
+        val blockchainApi = Mockito.mock(BlockchainSimpleQueryApi::class.java)
+
+        val restApi = Mockito.mock(BlockchainRestApi::class.java)
 
         Mockito.`when`(blockchainApi.currentHashRateGigaHashes()).thenReturn(Single.never())
 
-        val repository: BlockchainRepository = BlockChainRepositoryImpl(blockchainApi)
+        val repository: BlockchainRepository = BlockChainRepositoryImpl(blockchainApi, restApi)
 
         val testObserver: TestObserver<Long> = repository.currentHashRateGigaHashes().test()
 
