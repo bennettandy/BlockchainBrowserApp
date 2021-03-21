@@ -142,14 +142,13 @@ sonarqube {
     properties {
         property "sonar.projectKey", "uk.co.avsoftware.blockchainbrowser"
         property "sonar.language", "kotlin"
-        property "sonar.sources", "app/src/main/java"
-        property "sonar.tests", "app/src/test/java"
-        property "sonar.binaries", "build"
+        property "sonar.sources", "src/main/java"
+        property "sonar.tests", "src/test/java"
         property "sonar.projectVersion", "0.1"
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.login", "926ed1fdde12d8cd638e5dc6b7233a2e8522f22b"
         property "sonar.host.url", "http://192.168.0.13:9000"
-        property "sonar.java.binaries", "app/build/intermediates/javac/debug/classes"
-        property "sonar.jacoco.reportPaths","app/build/jacoco/testDebugUnitTest.exec"
+        property "sonar.java.binaries", "build/intermediates/javac/debug/classes"
+        property "sonar.jacoco.reportPaths","build/jacoco/testDebugUnitTest.exec"
     }
 }
