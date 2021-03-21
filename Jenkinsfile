@@ -3,10 +3,10 @@ pipeline {
     // Run on a build agent where we have the Android SDK installed
     docker { image "avsoftware/android-agent:latest"}
   }
-  environment {
-    GOOGLE_API_KEY = credentials('jenkins-google-api-key')
-    GOOGLE_SERVICES_JSON = credentials('google-services-json')
-  }
+//  environment {
+//    GOOGLE_API_KEY = credentials('jenkins-google-api-key')
+//    GOOGLE_SERVICES_JSON = credentials('google-services-json')
+//  }
   stages{
     stage('Emulator'){
       steps{
