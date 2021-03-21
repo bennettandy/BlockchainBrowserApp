@@ -6,5 +6,8 @@
 
     <string name="home_welcome_text">Welcome to Blockchain Browser</string>
     <string name="home_hash_rate">"Hash Rate: %1$d"</string>
+    <string name="home_difficulty">"Difficulty: %1$s"</string>
+    <string name="home_block_count">"Block Count: %1$d</string>
+    <string name="home_latest_hash">"Latest Hash: %1$s"</string>
 
 </resources>
