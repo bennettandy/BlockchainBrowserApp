@@ -24,7 +24,7 @@ pipeline {
     }
     stage('Test'){
       steps {
-        sh './gradlew test createDebugCoverageReport'
+        sh './gradlew test'
       }
     }
     stage('Build'){
