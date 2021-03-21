@@ -22,15 +22,15 @@ pipeline {
         //sh 'docker run --publish 8554:8554/tcp --publish 5554:5554/tcp --publish 5555:5555/tcp us-docker.pkg.dev/android-emulator-268719/images/28-playstore-x64:30.1.2'
       }
     }
-    stage('Test'){
-      steps {
-        sh './gradlew test'
-      }
-    }
+//    stage('Test'){
+//      steps {
+//        sh './gradlew test'
+//      }
+//    }
     stage('Build'){
       steps{
         //sh 'rm -rf /var/lib/jenkins/workspace/kotlin_android_pipeline/app/build/test-results/testReleaseUnitTest/TEST-com.yodle.android.kotlindemo.service.GitHubApiServiceTest.xml'
-        sh './gradlew build'
+        sh './gradlew clean test build'
       }
     }
     stage('Sonar'){
