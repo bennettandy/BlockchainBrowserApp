@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MainText" parent="TextAppearance.AppCompat" />
+
+    <style name="MainText.small">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="MainText.medium">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="MainText.large">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+</resources>

@@ -32,36 +32,37 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/design_default_color_background"
-                android:text="@{@string/home_hash_rate(viewmodel.hashRate)}"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/design_default_color_background"
-                android:text="@{@string/home_difficulty(viewmodel.difficulty)}"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-            <TextView
+                style="@style/MainText.large"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/design_default_color_background"
                 android:text="@{@string/home_block_count(viewmodel.blockCount)}"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textAlignment="center" />
 
             <TextView
+                style="@style/MainText.medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/design_default_color_background"
+                android:text="@{@string/home_hash_rate(viewmodel.hashRate)}"
+                android:textAlignment="center" />
+
+            <TextView
+                style="@style/MainText.medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/design_default_color_background"
+                android:text="@{@string/home_difficulty(viewmodel.difficulty)}"
+                android:textAlignment="center" />
+
+            <TextView
+                style="@style/MainText.small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/design_default_color_background"
                 android:text="@{@string/home_latest_hash(viewmodel.latestHash)}"
-                android:textAlignment="center"
-                android:textSize="20sp" />
+                android:padding="@dimen/global_medium_padding"
+                android:textAlignment="center" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
