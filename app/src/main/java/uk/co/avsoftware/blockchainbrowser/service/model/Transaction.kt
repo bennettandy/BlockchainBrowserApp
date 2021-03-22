@@ -1,4 +1,4 @@
-package uk.co.avsoftware.fragvm.blockchain.model
+package uk.co.avsoftware.blockchainbrowser.service.model
 
 data class Transaction(
     val hash: String,
@@ -15,6 +15,9 @@ data class Transaction(
 )
 
 data class TransactionInput(
+    val sequence: Long,
+    val witness: String,
+    val index: Int,
     val prev_out: PreviousOutput,
     val script: String
 )
@@ -22,12 +25,23 @@ data class TransactionInput(
 data class PreviousOutput(
     val hash: String,
     val value: String,
+    val spending_outpoints: List<Outpoint>,
     val tx_index: String,
     val n: String
 )
 
 data class TransactionOutput(
-    val value: String,
+    val value: Long,
     val hash: String,
-    val script: String
+    val script: String,
+    val spent: Boolean,
+    val spending_outpoints: List<Outpoint>,
+    val addr: String,
+    val n: Int,
+)
+
+
+data class Outpoint(
+    val tx_index: Long,
+    val n: Int
 )

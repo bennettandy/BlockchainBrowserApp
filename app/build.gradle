@@ -47,6 +47,11 @@ android {
         // for view binding :
         // viewBinding = true
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -133,6 +138,7 @@ dependencies {
     testImplementation 'androidx.test.espresso:espresso-intents:' + rootProject.espressoVersion
     testImplementation 'androidx.test.ext:truth:' + rootProject.extTruthVersion
     testImplementation 'androidx.arch.core:core-testing:' + rootProject.arch_version
+    testImplementation 'com.github.tomakehurst:wiremock:2.27.2'
 }
 
 sonarqube {
