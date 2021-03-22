@@ -5,8 +5,6 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import org.junit.Test
 import uk.co.avsoftware.fragvm.blockchain.model.Block
-import uk.co.avsoftware.fragvm.blockchain.model.TransactionInput
-import uk.co.avsoftware.fragvm.blockchain.model.TransactionOutput
 import java.io.File
 
 class BlockTest {
