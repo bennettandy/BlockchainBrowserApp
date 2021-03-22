@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainChartingApi
 import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainRestApi
 import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainSimpleQueryApi
 
@@ -17,4 +18,7 @@ object BlockchainModule {
 
     @Provides
     fun providesRestApi( retrofit: Retrofit): BlockchainRestApi = retrofit.create(BlockchainRestApi::class.java)
+
+    @Provides
+    fun providesChartingApi( retrofit: Retrofit):  BlockchainChartingApi = retrofit.create(BlockchainChartingApi::class.java)
 }

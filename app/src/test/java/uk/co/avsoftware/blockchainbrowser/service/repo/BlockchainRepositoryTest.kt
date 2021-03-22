@@ -8,6 +8,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
+import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainChartingApi
 import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainRestApi
 import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainSimpleQueryApi
 import uk.co.avsoftware.blockchainbrowser.service.repo.impl.BlockChainRepositoryImpl
@@ -37,9 +38,11 @@ class BlockchainRepositoryTest {
 
         val restApi = Mockito.mock(BlockchainRestApi::class.java)
 
+        val chartApi = Mockito.mock(BlockchainChartingApi::class.java)
+
         Mockito.`when`(blockchainApi.currentHashRateGigaHashes()).thenReturn(Single.just(209080L))
 
-        val repository: BlockchainRepository = BlockChainRepositoryImpl(blockchainApi, restApi)
+        val repository: BlockchainRepository = BlockChainRepositoryImpl(blockchainApi, restApi, chartApi)
 
         val testObserver: TestObserver<Long> = repository.currentHashRateGigaHashes().test()
 
@@ -56,9 +59,11 @@ class BlockchainRepositoryTest {
 
         val restApi = Mockito.mock(BlockchainRestApi::class.java)
 
+        val chartApi = Mockito.mock(BlockchainChartingApi::class.java)
+
         Mockito.`when`(blockchainApi.currentHashRateGigaHashes()).thenReturn(Single.never())
 
-        val repository: BlockchainRepository = BlockChainRepositoryImpl(blockchainApi, restApi)
+        val repository: BlockchainRepository = BlockChainRepositoryImpl(blockchainApi, restApi, chartApi)
 
         val testObserver: TestObserver<Long> = repository.currentHashRateGigaHashes().test()
 

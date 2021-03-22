@@ -63,6 +63,16 @@
                 android:text="@{@string/home_latest_hash(viewmodel.latestHash)}"
                 android:padding="@dimen/global_medium_padding"
                 android:textAlignment="center" />
+
+            <TextView
+                style="@style/MainText.small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/design_default_color_background"
+                android:text="@{viewmodel.generalStats}"
+                android:padding="@dimen/global_medium_padding"
+                android:textAlignment="center" />
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

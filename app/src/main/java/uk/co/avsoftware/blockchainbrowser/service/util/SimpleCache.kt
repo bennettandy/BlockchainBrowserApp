@@ -5,9 +5,8 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import timber.log.Timber
 import java.time.Clock
 import java.time.Instant
-import javax.inject.Inject
 
-class SimpleCache<T> @Inject constructor(private val clock: Clock, private val ttlMillis: Long = DEFAULT_TTL) {
+class SimpleCache<T> (private val clock: Clock, private val ttlMillis: Long = DEFAULT_TTL) {
 
     private val subject: BehaviorSubject<Pair<Instant,T>> = BehaviorSubject.create()
 
