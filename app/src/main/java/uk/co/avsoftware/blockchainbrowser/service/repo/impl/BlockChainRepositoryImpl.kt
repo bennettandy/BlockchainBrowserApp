@@ -69,7 +69,7 @@ class BlockChainRepositoryImpl @Inject constructor(
     ): Single<T> = cache.value()
         .mergeWith(apiCall.doOnSuccess { Timber.i("$it From API") }
             .doOnEvent { t1, t2 -> Timber.i("$t1, $t2") }
-            //.timeout(5000, TimeUnit.MILLISECONDS)
+            .timeout(5000, TimeUnit.MILLISECONDS)
             .doOnSuccess(cache::onNext)
         )
         .firstOrError()

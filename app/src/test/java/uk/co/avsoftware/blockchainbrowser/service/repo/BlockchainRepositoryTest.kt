@@ -69,7 +69,7 @@ class BlockchainRepositoryTest {
 
         testObserver.assertNoErrors()
 
-        testScheduler.advanceTimeBy(2500, TimeUnit.MILLISECONDS)
+        testScheduler.advanceTimeBy(1, TimeUnit.MINUTES)
 
         testObserver.assertValue(0L)
 
