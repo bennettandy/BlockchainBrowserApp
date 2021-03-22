@@ -9,6 +9,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.mockito.Mockito
+import uk.co.avsoftware.blockchainbrowser.service.model.Stats
 import uk.co.avsoftware.blockchainbrowser.service.repo.BlockchainRepository
 import uk.co.avsoftware.blockchainbrowser.util.mock
 import java.math.BigDecimal
@@ -29,6 +30,7 @@ class HomeViewModelTest {
         Mockito.`when`(blockchainRepository.getBlockCount()).thenReturn(Single.just(1000L))
         Mockito.`when`(blockchainRepository.getDifficulty()).thenReturn(Single.just(BigDecimal.ONE))
         Mockito.`when`(blockchainRepository.getLatestHash()).thenReturn(Single.just("000000dsdbfdhavfdvfkf"))
+        Mockito.`when`(blockchainRepository.getGeneralStats()).thenReturn(Single.just(Stats()))
 
         // When
         val viewModel = HomeViewModel(blockchainRepository)
