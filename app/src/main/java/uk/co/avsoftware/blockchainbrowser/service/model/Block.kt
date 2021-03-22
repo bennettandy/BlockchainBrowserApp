@@ -1,12 +1,21 @@
 package uk.co.avsoftware.fragvm.blockchain.model
 
+import com.google.gson.annotations.SerializedName
+
 //@Entity(tableName = "blocks")
 data class Block(
-    var hash: String,
-    var time: Long,
-    var block_index: Int,
-    var height: Int,
-    //var tx_indexes: List<Long>
+    val hash: String,
+    val time: Long,
+    @SerializedName("block_index")
+    val blockIndex: Int,
+    val height: Int,
+
+    @SerializedName("prev_block")
+    val previousBlock: String,
+    @SerializedName("mrkl_root")
+    val merkleRoot: String,
+
+    val tx: ArrayList<Transaction>
 ) {
     //@PrimaryKey(autoGenerate = true)
     var id: Int = 0

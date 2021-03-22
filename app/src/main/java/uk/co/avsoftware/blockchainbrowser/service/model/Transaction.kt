@@ -15,6 +15,9 @@ data class Transaction(
 )
 
 data class TransactionInput(
+    val sequence: Long,
+    val witness: String,
+    val index: Int,
     val prev_out: PreviousOutput,
     val script: String
 )
@@ -27,7 +30,15 @@ data class PreviousOutput(
 )
 
 data class TransactionOutput(
-    val value: String,
+    val value: Long,
     val hash: String,
-    val script: String
+    val script: String,
+    val spent: Boolean,
+    val spending_outpoints: List<Outpoint>
+)
+
+
+data class Outpoint(
+    val tx_index: Long,
+    val n: Int
 )
