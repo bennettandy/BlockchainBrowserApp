@@ -1,16 +1,15 @@
 package uk.co.avsoftware.blockchainbrowser.service.repo.impl
 
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.functions.Consumer
 import timber.log.Timber
 import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainChartingApi
 import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainRestApi
 import uk.co.avsoftware.blockchainbrowser.service.repo.BlockchainRepository
 import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainSimpleQueryApi
 import uk.co.avsoftware.blockchainbrowser.service.model.Stats
+import uk.co.avsoftware.blockchainbrowser.service.model.Transaction
 import uk.co.avsoftware.blockchainbrowser.service.util.SimpleCache
 import uk.co.avsoftware.fragvm.blockchain.model.Block
-import uk.co.avsoftware.fragvm.blockchain.model.Transaction
 import java.math.BigDecimal
 import java.time.Clock
 import java.util.concurrent.TimeUnit

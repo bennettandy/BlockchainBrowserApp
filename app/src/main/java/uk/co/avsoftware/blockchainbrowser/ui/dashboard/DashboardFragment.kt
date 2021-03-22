@@ -9,8 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import uk.co.avsoftware.blockchainbrowser.R
 import uk.co.avsoftware.blockchainbrowser.databinding.FragmentDashboardBinding
+import uk.co.avsoftware.fragvm.ui.home.ui.gallery.recycler.BlockDataAdapter
 
 class DashboardFragment : Fragment() {
 
@@ -29,6 +32,23 @@ class DashboardFragment : Fragment() {
         viewBinding.lifecycleOwner = this
         viewBinding.viewmodel = dashboardViewModel
 
+        setUpRecyclerView()
+
         return viewBinding.root
+    }
+
+    private fun setUpRecyclerView() {
+        // bind RecyclerView
+        val recyclerView: RecyclerView = viewBinding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.setHasFixedSize(true)
+
+        // Set Adapter
+        val adapter: BlockDataAdapter = BlockDataAdapter(emptyList())
+        viewBinding.recyclerView.adapter = adapter
+        dashboardViewModel.latestBlock.observe(viewLifecycleOwner, {
+            adapter.transactions = it.tx
+            adapter.notifyDataSetChanged()
+        })
     }
 }

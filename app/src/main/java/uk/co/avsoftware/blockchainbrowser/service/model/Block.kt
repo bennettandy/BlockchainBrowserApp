@@ -1,6 +1,7 @@
 package uk.co.avsoftware.fragvm.blockchain.model
 
 import com.google.gson.annotations.SerializedName
+import uk.co.avsoftware.blockchainbrowser.service.model.Transaction
 
 //@Entity(tableName = "blocks")
 data class Block(
@@ -15,7 +16,7 @@ data class Block(
     @SerializedName("mrkl_root")
     val merkleRoot: String,
 
-    val tx: ArrayList<Transaction>
+    val tx: List<Transaction>
 ) {
     //@PrimaryKey(autoGenerate = true)
     var id: Int = 0

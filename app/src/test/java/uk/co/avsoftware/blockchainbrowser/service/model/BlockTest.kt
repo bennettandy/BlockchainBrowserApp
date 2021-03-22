@@ -14,6 +14,7 @@ class BlockTest {
     @Test
     fun `deserialise Block from json`(){
 
+        // https://blockchain.info/rawblock/0000000000000000000a2a0731e79f977c689e4f3bf0a72eec99abe3c3478e52
         val jsonText: String = File("./src/test/res/raw/block.json").readText(Charsets.UTF_8)
 
         val gson: Gson = GsonBuilder().create()
@@ -44,16 +45,15 @@ class BlockTest {
         assertThat(output.spent).isFalse()
         assertThat(output.value).isEqualTo(641483202)
         assertThat(output.spending_outpoints).isEmpty()
-        /*
-        "type": 0,
-          "spent": false,
-          "value": 641483202,
-          "spending_outpoints": [],
-          "addr": "191sNkKTG8pzUsNgZYKo7DH2odg39XDAGo",
-          "n": 0,
-          "tx_index": 0,
-          "script": "76a91457eb0ea1de7bd9b63d59c29d60941adb61c597cf88ac"
-         */
+        assertThat(output.addr).isEqualTo("191sNkKTG8pzUsNgZYKo7DH2odg39XDAGo")
+        assertThat(output.n).isEqualTo(0)
+        assertThat(output.script).isEqualTo("76a91457eb0ea1de7bd9b63d59c29d60941adb61c597cf88ac")
 
+        // transaction 1
+        val transaction1 = block.tx[1]
+        assertThat(transaction1.hash).isEqualTo("3618b1bab1d5b1144edc3a8400ac3bd7eacb0f26fbbb4855736e8160d9c728aa")
+        val outpoint = transaction1.inputs[0].prev_out.spending_outpoints[0]
+        assertThat(outpoint.tx_index).isEqualTo(0)
+        assertThat(outpoint.n).isEqualTo(0)
     }
 }
