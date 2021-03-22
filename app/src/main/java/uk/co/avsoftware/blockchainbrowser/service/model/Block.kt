@@ -20,4 +20,10 @@ data class Block(
 ) {
     //@PrimaryKey(autoGenerate = true)
     var id: Int = 0
+
+    companion object {
+        // todo: remove this
+        fun tempTest(): Block = Block("hash", 0,0,0,"0000123","bfdbsfa",
+            listOf(Transaction("dfsdfasdfdfdfad", 0, 0, 0, "",0, "", 0, "", emptyList(), emptyList())))
+    }
 }

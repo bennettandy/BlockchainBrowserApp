@@ -11,10 +11,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dagger.hilt.android.AndroidEntryPoint
 import uk.co.avsoftware.blockchainbrowser.R
 import uk.co.avsoftware.blockchainbrowser.databinding.FragmentDashboardBinding
 import uk.co.avsoftware.fragvm.ui.home.ui.gallery.recycler.BlockDataAdapter
 
+@AndroidEntryPoint
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
@@ -24,7 +26,7 @@ class DashboardFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         dashboardViewModel =
                 ViewModelProvider(this).get(DashboardViewModel::class.java)
 
