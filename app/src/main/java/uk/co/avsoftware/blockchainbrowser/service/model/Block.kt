@@ -1,7 +1,6 @@
-package uk.co.avsoftware.fragvm.blockchain.model
+package uk.co.avsoftware.blockchainbrowser.service.model
 
 import com.google.gson.annotations.SerializedName
-import uk.co.avsoftware.blockchainbrowser.service.model.Transaction
 
 //@Entity(tableName = "blocks")
 data class Block(

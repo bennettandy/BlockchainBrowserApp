@@ -10,4 +10,8 @@
     <string name="home_block_count">"Block Count: %1$d</string>
     <string name="home_latest_hash">"Latest Hash: %1$s"</string>
 
+    <string name="block_header_title">"Block Header"</string>
+    <string name="block_header_block_height">"Block Height: %1$d</string>
+    <string name="block_header_block_hash">"Hash: %1$s"</string>
+
 </resources>
