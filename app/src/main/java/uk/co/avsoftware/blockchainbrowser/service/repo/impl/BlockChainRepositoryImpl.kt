@@ -1,7 +1,6 @@
 package uk.co.avsoftware.blockchainbrowser.service.repo.impl
 
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.functions.BiConsumer
 import timber.log.Timber
 import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainChartingApi
 import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainRestApi
@@ -51,7 +50,7 @@ class BlockChainRepositoryImpl @Inject constructor(
             .doOnSuccess { Timber.i("Block Hash: $it") }
             .flatMap {
                 restApi.getRawBlockByHash(it)
-                    .doOnEvent(BiConsumer { t1, t2 -> Timber.i("$t1, $t2") })
+                    .doOnEvent { t1, t2 -> Timber.i("$t1, $t2") }
             }, Block.tempTest()
         )
 

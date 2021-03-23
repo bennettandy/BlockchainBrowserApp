@@ -4,17 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import uk.co.avsoftware.blockchainbrowser.R
 import uk.co.avsoftware.blockchainbrowser.databinding.FragmentDashboardBinding
-import uk.co.avsoftware.fragvm.ui.home.ui.gallery.recycler.BlockDataAdapter
+import uk.co.avsoftware.blockchainbrowser.ui.dashboard.recycler.BlockDataAdapter
 
 @AndroidEntryPoint
 class DashboardFragment : Fragment() {
@@ -32,7 +30,7 @@ class DashboardFragment : Fragment() {
 
         viewBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
         viewBinding.lifecycleOwner = this
-        viewBinding.viewmodel = dashboardViewModel
+        viewBinding.viewModel = dashboardViewModel
 
         setUpRecyclerView()
 
@@ -46,7 +44,7 @@ class DashboardFragment : Fragment() {
         recyclerView.setHasFixedSize(true)
 
         // Set Adapter
-        val adapter: BlockDataAdapter = BlockDataAdapter(emptyList())
+        val adapter = BlockDataAdapter(emptyList())
         viewBinding.recyclerView.adapter = adapter
         dashboardViewModel.latestBlock.observe(viewLifecycleOwner, {
             adapter.transactions = it.tx

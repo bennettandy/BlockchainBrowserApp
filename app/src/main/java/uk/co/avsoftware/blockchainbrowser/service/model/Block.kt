@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package uk.co.avsoftware.blockchainbrowser.service.model
 
 import com.google.gson.annotations.SerializedName

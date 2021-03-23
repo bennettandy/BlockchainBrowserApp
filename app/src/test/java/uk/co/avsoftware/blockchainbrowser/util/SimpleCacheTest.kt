@@ -5,7 +5,6 @@ import org.junit.Test
 import org.junit.rules.TestRule
 import org.threeten.extra.MutableClock
 import uk.co.avsoftware.blockchainbrowser.service.util.SimpleCache
-import java.lang.Thread.sleep
 import java.time.Instant
 import java.time.ZoneId
 
