@@ -2,6 +2,10 @@
 <resources>
     <style name="MainText" parent="TextAppearance.AppCompat" />
 
+    <style name="MainText.extraSmall">
+        <item name="android:textSize">9sp</item>
+    </style>
+
     <style name="MainText.small">
         <item name="android:textSize">12sp</item>
     </style>
@@ -14,4 +18,8 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <!-- Block Header -->
+    <style name="BlockHash" parent="MainText.extraSmall">
+        <item name="android:gravity">left</item>
+    </style>
 </resources>

@@ -1,9 +1,9 @@
 package uk.co.avsoftware.blockchainbrowser.service.repo
 
 import io.reactivex.rxjava3.core.Single
+import uk.co.avsoftware.blockchainbrowser.service.model.Block
 import uk.co.avsoftware.blockchainbrowser.service.model.Stats
 import uk.co.avsoftware.blockchainbrowser.service.model.Transaction
-import uk.co.avsoftware.fragvm.blockchain.model.Block
 import java.math.BigDecimal
 
 interface BlockchainRepository {
