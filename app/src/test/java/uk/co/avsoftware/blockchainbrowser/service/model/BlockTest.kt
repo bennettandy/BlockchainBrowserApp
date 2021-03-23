@@ -22,7 +22,7 @@ class BlockTest {
 
             // transaction 0 - Coinbase - // https://learnmeabitcoin.com/technical/coinbase-transaction
             this.tx[0].apply {
-                assertThat(block_height).isEqualTo(675759)
+                assertThat(blockHeight).isEqualTo(675759)
                 assertThat(hash).isEqualTo("83fb726c688d2b07cd4e45a974c74e282ebdd1d51e1bfde73e6d20ccc47b7b02")
                 assertThat(inputs).hasSize(1)
                 assertThat(out).hasSize(4)
@@ -39,7 +39,7 @@ class BlockTest {
                 this.out[0].apply {
                     assertThat(spent).isFalse()
                     assertThat(value).isEqualTo(641483202)
-                    assertThat(spending_outpoints).isEmpty()
+                    assertThat(spendingOutpoints).isEmpty()
                     assertThat(addr).isEqualTo("191sNkKTG8pzUsNgZYKo7DH2odg39XDAGo")
                     assertThat(n).isEqualTo(0)
                     assertThat(script).isEqualTo("76a91457eb0ea1de7bd9b63d59c29d60941adb61c597cf88ac")
@@ -50,9 +50,9 @@ class BlockTest {
             this.tx[1].apply {
                 assertThat(hash).isEqualTo("3618b1bab1d5b1144edc3a8400ac3bd7eacb0f26fbbb4855736e8160d9c728aa")
 
-                val outpoint = inputs[0].prev_out.spending_outpoints[0]
+                val outpoint = inputs[0].prevOut.spendingOutpoints[0]
                 outpoint.apply {
-                    assertThat(tx_index).isEqualTo(0)
+                    assertThat(txIndex).isEqualTo(0)
                     assertThat(n).isEqualTo(0)
                 }
             }
