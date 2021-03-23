@@ -1,4 +1,4 @@
-package uk.co.avsoftware.fragvm.ui.home.ui.gallery.recycler
+package uk.co.avsoftware.blockchainbrowser.ui.dashboard.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

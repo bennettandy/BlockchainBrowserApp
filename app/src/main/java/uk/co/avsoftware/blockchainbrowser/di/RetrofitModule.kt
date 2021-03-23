@@ -8,7 +8,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import org.apache.commons.beanutils.converters.StringConverter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -28,7 +27,7 @@ object RetrofitModule {
         .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(gson))
         .baseUrl(appContext.getString(R.string.api_blockchain_base_url))
-        .build();
+        .build()
 
     @Provides
     fun provideGson(): Gson = GsonBuilder().create()

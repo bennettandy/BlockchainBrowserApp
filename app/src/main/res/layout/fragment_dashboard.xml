@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="uk.co.avsoftware.blockchainbrowser.ui.dashboard.DashboardViewModel" />
 
         <import type="android.view.View" />
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/block_header"
-            app:vm="@{viewmodel}"
+            app:vm="@{viewModel}"
             />
 
         <androidx.recyclerview.widget.RecyclerView

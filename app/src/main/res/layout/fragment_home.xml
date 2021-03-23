@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="uk.co.avsoftware.blockchainbrowser.ui.home.HomeViewModel" />
 
         <import type="android.view.View" />
@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/design_default_color_background"
-                android:text="@{@string/home_block_count(viewmodel.blockCount)}"
+                android:text="@{@string/home_block_count(viewModel.blockCount)}"
                 android:textAlignment="center" />
 
             <TextView
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/design_default_color_background"
-                android:text="@{@string/home_hash_rate(viewmodel.hashRate)}"
+                android:text="@{@string/home_hash_rate(viewModel.hashRate)}"
                 android:textAlignment="center" />
 
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/design_default_color_background"
-                android:text="@{@string/home_difficulty(viewmodel.difficulty)}"
+                android:text="@{@string/home_difficulty(viewModel.difficulty)}"
                 android:textAlignment="center" />
 
             <TextView
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/design_default_color_background"
-                android:text="@{@string/home_latest_hash(viewmodel.latestHash)}"
+                android:text="@{@string/home_latest_hash(viewModel.latestHash)}"
                 android:padding="@dimen/global_medium_padding"
                 android:textAlignment="center" />
 
@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/design_default_color_background"
-                android:text="@{viewmodel.generalStats}"
+                android:text="@{viewModel.generalStats}"
                 android:padding="@dimen/global_medium_padding"
                 android:textAlignment="center" />
 

@@ -1,3 +1,7 @@
+@file:Suppress("SpellCheckingInspection", "SpellCheckingInspection", "SpellCheckingInspection",
+    "SpellCheckingInspection"
+)
+
 package uk.co.avsoftware.blockchainbrowser.service.api
 
 import io.reactivex.rxjava3.core.Single

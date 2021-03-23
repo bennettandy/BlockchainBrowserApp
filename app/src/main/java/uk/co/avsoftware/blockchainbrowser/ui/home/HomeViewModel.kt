@@ -10,7 +10,7 @@ import java.math.BigDecimal
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val blockchainRepository: BlockchainRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(blockchainRepository: BlockchainRepository) : ViewModel() {
 
     val hashRate: LiveData<Long> = LiveDataReactiveStreams.fromPublisher(blockchainRepository.currentHashRateGigaHashes().toFlowable())
     val blockCount: LiveData<Long> = LiveDataReactiveStreams.fromPublisher(blockchainRepository.getBlockCount().toFlowable())
