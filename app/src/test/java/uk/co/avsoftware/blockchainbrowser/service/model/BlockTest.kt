@@ -1,7 +1,6 @@
 package uk.co.avsoftware.blockchainbrowser.service.model
 
 import com.google.common.truth.Truth.assertThat
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import org.junit.Test
 import uk.co.avsoftware.fragvm.blockchain.model.Block
@@ -10,15 +9,11 @@ import java.io.File
 class BlockTest {
 
     @Test
-    fun `deserialise Block from json`(){
+    fun `deserialise Block from json`() {
 
         // https://blockchain.info/rawblock/0000000000000000000a2a0731e79f977c689e4f3bf0a72eec99abe3c3478e52
-        val jsonText: String = File("./src/test/res/raw/block.json").readText(Charsets.UTF_8)
 
-        val gson: Gson = GsonBuilder().create()
-
-        val block: Block = gson.fromJson(jsonText, Block::class.java)
-        block.apply {
+        blockFromJson("./src/test/res/raw/block.json").apply {
             assertThat(hash).isEqualTo("0000000000000000000a2a0731e79f977c689e4f3bf0a72eec99abe3c3478e52")
             assertThat(previousBlock).isEqualTo("000000000000000000004b9f2a0de049afb1c20466db3cc4215424bcbe2a45ff")
             assertThat(merkleRoot).isEqualTo("8213ad65aa1a300c273b153f342b0f627ed1559f4aa21f8bbf7b91651eef2981")
@@ -62,4 +57,12 @@ class BlockTest {
             }
         }
     }
+
+    private fun blockFromJson(location: String): Block =
+        File(location).readText(Charsets.UTF_8)
+            .let {
+                GsonBuilder().create().run {
+                    fromJson(it, Block::class.java)
+                }
+            }
 }
