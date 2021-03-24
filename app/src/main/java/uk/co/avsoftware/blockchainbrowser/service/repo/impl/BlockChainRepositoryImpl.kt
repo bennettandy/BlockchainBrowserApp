@@ -1,6 +1,7 @@
 package uk.co.avsoftware.blockchainbrowser.service.repo.impl
 
 import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.Deferred
 import timber.log.Timber
 import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainChartingApi
 import uk.co.avsoftware.blockchainbrowser.service.api.BlockchainRestApi
@@ -57,8 +58,9 @@ class BlockChainRepositoryImpl @Inject constructor(
     override fun getTransactionByHash(txHash: String): Single<Transaction> =
         restApi.getTransactionByHash(txHash)
 
-    override fun getGeneralStats(): Single<Stats> =
-        cachedApiCall(statsCache, chartingApi.getStats(), Stats())
+    // coroutine call
+    override fun getGeneralStatsAsync(): Deferred<Stats> = chartingApi.getStatsAsync()
+        //cachedApiCall(statsCache, chartingApi.getStats(), Stats())
 
 
     private fun <T> cachedApiCall(

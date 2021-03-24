@@ -1,9 +1,8 @@
 package uk.co.avsoftware.blockchainbrowser.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.LiveDataReactiveStreams
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import uk.co.avsoftware.blockchainbrowser.service.model.Stats
 import uk.co.avsoftware.blockchainbrowser.service.repo.BlockchainRepository
 import java.math.BigDecimal
@@ -18,5 +17,11 @@ class HomeViewModel @Inject constructor(blockchainRepository: BlockchainReposito
         .map(BigDecimal::toString).toFlowable())
     val latestHash: LiveData<String> = LiveDataReactiveStreams.fromPublisher(blockchainRepository.getLatestHash().toFlowable())
 
-    val generalStats: LiveData<String> = LiveDataReactiveStreams.fromPublisher(blockchainRepository.getGeneralStats().map(Stats::toString).toFlowable())
+    private val _stats = MutableLiveData<Stats>()
+    val generalStats: LiveData<String> = _stats.map(Stats::toString)
+
+    init {
+        viewModelScope.launch { _stats.postValue(blockchainRepository.getGeneralStatsAsync().await()) }
+    }
+
 }
