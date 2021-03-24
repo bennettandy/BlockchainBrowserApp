@@ -16,7 +16,7 @@ interface BlockchainRepository {
 
     fun getLatestHash(): Single<String>
 
-    fun getTransactionByHash(tx_hash: String): Single<Transaction>
+    fun getTransactionByHash(txHash: String): Single<Transaction>
 
     fun getLatestBlock(): Single<Block>
 

@@ -23,7 +23,7 @@ data class Block(
     var id: Int = 0
 
     companion object {
-        // todo: remove this
+        // todo: eventually remove this
         fun tempTest(): Block = Block("hash", 0,0,0,"0000123","bfdbsfa",
             listOf(Transaction("dfsdfasdfdfdfad", 0, 0, 0, "",0, "", 0, "", emptyList(), emptyList())))
     }

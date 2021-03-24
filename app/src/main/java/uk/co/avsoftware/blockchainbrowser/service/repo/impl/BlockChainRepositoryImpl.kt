@@ -54,8 +54,8 @@ class BlockChainRepositoryImpl @Inject constructor(
             }, Block.tempTest()
         )
 
-    override fun getTransactionByHash(tx_hash: String): Single<Transaction> =
-        restApi.getTransactionByHash(tx_hash)
+    override fun getTransactionByHash(txHash: String): Single<Transaction> =
+        restApi.getTransactionByHash(txHash)
 
     override fun getGeneralStats(): Single<Stats> =
         cachedApiCall(statsCache, chartingApi.getStats(), Stats())
