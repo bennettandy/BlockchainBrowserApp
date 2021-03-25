@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.Deferred
 import org.hamcrest.Matchers
 import org.junit.Rule
 import org.junit.Test
@@ -25,12 +26,14 @@ class HomeViewModelTest {
 
         // Given
         val blockchainRepository: BlockchainRepository = mock()
+        val deferredStats: Deferred<Stats> = mock()
 
         Mockito.`when`(blockchainRepository.currentHashRateGigaHashes()).thenReturn(Single.just(209080L))
         Mockito.`when`(blockchainRepository.getBlockCount()).thenReturn(Single.just(1000L))
         Mockito.`when`(blockchainRepository.getDifficulty()).thenReturn(Single.just(BigDecimal.ONE))
         Mockito.`when`(blockchainRepository.getLatestHash()).thenReturn(Single.just("000000dsdbfdhavfdvfkf"))
-        Mockito.`when`(blockchainRepository.getGeneralStats()).thenReturn(Single.just(Stats()))
+
+        //Mockito.`when`(blockchainRepository.getGeneralStats()).thenReturn(deferredStats))
 
         // When
         val viewModel = HomeViewModel(blockchainRepository)

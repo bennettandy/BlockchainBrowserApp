@@ -58,10 +58,7 @@ class BlockChainRepositoryImpl @Inject constructor(
     override fun getTransactionByHash(txHash: String): Single<Transaction> =
         restApi.getTransactionByHash(txHash)
 
-    // coroutine call
-    override fun getGeneralStatsAsync(): Deferred<Stats> = chartingApi.getStatsAsync()
-        //cachedApiCall(statsCache, chartingApi.getStats(), Stats())
-
+    override fun getGeneralStats(): Deferred<Stats> = chartingApi.getStats()
 
     private fun <T> cachedApiCall(
         cache: SimpleCache<T>,

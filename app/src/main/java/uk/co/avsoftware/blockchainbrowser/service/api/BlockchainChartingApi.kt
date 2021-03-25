@@ -7,6 +7,6 @@ import uk.co.avsoftware.blockchainbrowser.service.model.Stats
 interface BlockchainChartingApi {
 
     @GET("https://api.blockchain.info/stats")
-    fun getStatsAsync(): Deferred<Stats>
+    fun getStats(): Deferred<Stats>
 
 }

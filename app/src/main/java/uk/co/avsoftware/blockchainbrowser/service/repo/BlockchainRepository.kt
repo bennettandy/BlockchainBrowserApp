@@ -21,5 +21,5 @@ interface BlockchainRepository {
 
     fun getLatestBlock(): Single<Block>
 
-    fun getGeneralStatsAsync(): Deferred<Stats>
+    fun getGeneralStats(): Deferred<Stats>
 }
