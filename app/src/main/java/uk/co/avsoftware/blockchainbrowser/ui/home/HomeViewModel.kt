@@ -2,10 +2,11 @@ package uk.co.avsoftware.blockchainbrowser.ui.home
 
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.launch
-import uk.co.avsoftware.blockchainbrowser.service.model.Stats
 import uk.co.avsoftware.blockchainbrowser.service.repo.BlockchainRepository
 import java.math.BigDecimal
+import java.util.function.Consumer
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,15 +30,17 @@ class HomeViewModel @Inject constructor(blockchainRepository: BlockchainReposito
     private val _errorMessage = MutableLiveData<String>()
 
     init {
-        viewModelScope.launch {
-            val result: Stats = blockchainRepository.getGeneralStats().await()
-            try {
-                // seems messier than Rx Single
-                result.run { _stats.postValue(toString()) }
-            } catch (t: Throwable) {
-                _errorMessage.postValue(t.message)
-            }
-        }
+        wrapCoroutine(blockchainRepository.getGeneralStats(), { _stats.postValue(it.toString()) }, { _errorMessage.postValue(it.message) })
+    }
+
+    private fun <T> wrapCoroutine(
+        deferred: Deferred<T>,
+        consumer: Consumer<T>,
+        errorHandler: Consumer<Throwable>
+    ) = try {
+        viewModelScope.launch { consumer.accept(deferred.await()) }
+    } catch (t: Throwable) {
+        errorHandler.accept(t)
     }
 
 }
