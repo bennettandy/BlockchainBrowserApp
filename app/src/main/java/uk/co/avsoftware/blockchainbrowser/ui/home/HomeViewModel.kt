@@ -4,10 +4,12 @@ import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.launch
+import uk.co.avsoftware.blockchainbrowser.service.model.Stats
 import uk.co.avsoftware.blockchainbrowser.service.repo.BlockchainRepository
 import java.math.BigDecimal
 import java.util.function.Consumer
 import javax.inject.Inject
+import javax.inject.Provider
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(blockchainRepository: BlockchainRepository) : ViewModel() {
@@ -30,15 +32,19 @@ class HomeViewModel @Inject constructor(blockchainRepository: BlockchainReposito
     private val _errorMessage = MutableLiveData<String>()
 
     init {
-        wrapCoroutine(blockchainRepository.getGeneralStats(), { _stats.postValue(it.toString()) }, { _errorMessage.postValue(it.message) })
+        viewModelScope.launch {
+            val result: Result<Stats> = kotlin.runCatching {  blockchainRepository.getGeneralStats() }
+            result.exceptionOrNull()?.run { _errorMessage.postValue(message) }
+            result.getOrNull()?.run { _stats.postValue(toString()) }
+        }
     }
 
-    private fun <T> wrapCoroutine(
-        deferred: Deferred<T>,
+    private fun <T> runInCoroutine(
+        deferred: Provider<T>,
         consumer: Consumer<T>,
         errorHandler: Consumer<Throwable>
     ) = try {
-        viewModelScope.launch { consumer.accept(deferred.await()) }
+        viewModelScope.launch { consumer.accept(deferred.get()) }
     } catch (t: Throwable) {
         errorHandler.accept(t)
     }

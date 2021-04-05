@@ -16,6 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        style="@style/HeaderContainer"
         android:orientation="vertical"
         tools:context=".ui.dashboard.DashboardFragment">
 
@@ -30,10 +31,13 @@
         <TextView
             android:id="@+id/textView"
             style="@style/MainText.medium"
-            android:layout_width="310dp"
-            android:layout_height="19dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/block_header_title"
+            android:gravity="center"
+            android:background="@color/design_default_color_background"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -52,12 +56,11 @@
 
         <TextView
             android:id="@+id/block_hash_view"
-            style="@style/BlockHash"
-            android:layout_width="wrap_content"
+            style="@style/ReversedHeader"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/global_small_padding"
             android:text="@{@string/block_header_block_hash(vm.latestBlock.hash)}"
-            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/block_height_view"

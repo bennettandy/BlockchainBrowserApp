@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Other values-->
+    <attr name="headerBackgroundColor" format="reference" />
+    <attr name="backgroundGradientStart" format="reference" />
+    <attr name="backgroundGradientEnd" format="reference" />
+
+</resources>
