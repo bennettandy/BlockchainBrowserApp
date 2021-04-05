@@ -1,7 +1,5 @@
 package uk.co.avsoftware.blockchainbrowser.ui.dashboard
 
-import android.animation.AnimatorInflater
-import android.animation.AnimatorSet
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +8,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -56,11 +53,33 @@ class DashboardFragment : Fragment() {
         dashboardViewModel.latestBlock.observe(viewLifecycleOwner, {
             adapter.transactions = it.tx
             adapter.notifyDataSetChanged()
+            viewBinding.recyclerView.scheduleLayoutAnimation() // otherwise item animation doesn't run
         })
     }
 
     private fun setUpProgressView(){
-        dashboardViewModel.progress.observe(viewLifecycleOwner, Observer {
+
+        val fadeIn: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+        val fadeOut: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
+
+        val progress = viewBinding.headerLayout.progress
+        val contentPanel = viewBinding.headerLayout.contentPanel
+
+        fun showProgress(){
+            progress.visibility = View.VISIBLE
+            progress.startAnimation(fadeIn)
+            contentPanel.visibility = View.INVISIBLE
+            contentPanel.startAnimation(fadeOut)
+        }
+
+        fun hideProgress(){
+            progress.visibility = View.INVISIBLE
+            progress.startAnimation(fadeOut)
+            contentPanel.visibility = View.VISIBLE
+            contentPanel.startAnimation(fadeIn)
+        }
+
+        dashboardViewModel.progress.observe(viewLifecycleOwner, {
             when (it){
                 true -> showProgress()
                 false -> hideProgress()
@@ -68,20 +87,4 @@ class DashboardFragment : Fragment() {
         })
     }
 
-    private fun showProgress(){
-        viewBinding.headerLayout.progress.visibility = View.VISIBLE
-        viewBinding.headerLayout.contentPanel.visibility = View.INVISIBLE
-        
-        val fadeIn: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
-        viewBinding.headerLayout.contentPanel.startAnimation(fadeIn)
-    }
-
-    private fun hideProgress(){
-        viewBinding.headerLayout.progress.visibility = View.INVISIBLE
-        viewBinding.headerLayout.contentPanel.visibility = View.VISIBLE
-
-        val fadeIn: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
-        viewBinding.headerLayout.contentPanel.startAnimation(fadeIn)
-
-    }
 }
