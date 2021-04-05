@@ -72,9 +72,12 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$live_data_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$live_data_version"
 
+    // UI
+    implementation "androidx.cardview:cardview:1.0.0"
+
     // Rx
-    implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
-    implementation "io.reactivex.rxjava3:rxjava:3.0.0"
+    implementation "io.reactivex.rxjava3:rxandroid:$rx_java3_version"
+    implementation "io.reactivex.rxjava3:rxjava:$rx_java3_version"
 
     // https://mvnrepository.com/artifact/org.threeten/threeten-extra
     // mutable clock etc
