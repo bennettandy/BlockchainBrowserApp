@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="MainText" parent="TextAppearance.AppCompat" />
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight" />
+
+    <style name="MainText" parent="TextAppearance.AppCompat" >
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
 
     <style name="MainText.extraSmall">
         <item name="android:textSize">9sp</item>
@@ -18,8 +22,18 @@
         <item name="android:textSize">22sp</item>
     </style>
 
-    <!-- Block Header -->
-    <style name="BlockHash" parent="MainText.extraSmall">
-        <item name="android:gravity">left</item>
+    <!-- Header Container -->
+    <style name="HeaderContainer">
+        <item name="android:background">?lightBackgroundColor</item>
+        <item name="android:padding">@dimen/global_small_padding</item>
     </style>
+
+    <!-- Reversed Header -->
+    <style name="ReversedHeader" parent="MainText.extraSmall">
+        <item name="android:background">?colorPrimary</item>
+        <item name="android:textColor">?colorOnPrimary</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/global_small_padding</item>
+    </style>
+
 </resources>

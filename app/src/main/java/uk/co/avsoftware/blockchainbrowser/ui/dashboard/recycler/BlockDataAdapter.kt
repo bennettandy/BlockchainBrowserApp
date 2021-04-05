@@ -24,6 +24,7 @@ class BlockDataAdapter(var transactions: List<Transaction> = emptyList()) :
     override fun onBindViewHolder(holder: BlockViewHolder, position: Int) {
         // bind position
         holder.binding.transaction = transactions[position]
+        //holder.binding.root.startAnimation(R.anim.layout_slide_up)
     }
 
     override fun getItemCount(): Int = transactions.size

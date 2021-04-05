@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -34,6 +36,8 @@ class DashboardFragment : Fragment() {
 
         setUpRecyclerView()
 
+        setUpProgressView()
+
         return viewBinding.root
     }
 
@@ -49,6 +53,38 @@ class DashboardFragment : Fragment() {
         dashboardViewModel.latestBlock.observe(viewLifecycleOwner, {
             adapter.transactions = it.tx
             adapter.notifyDataSetChanged()
+            viewBinding.recyclerView.scheduleLayoutAnimation() // otherwise item animation doesn't run
         })
     }
+
+    private fun setUpProgressView(){
+
+        val fadeIn: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+        val fadeOut: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
+
+        val progress = viewBinding.headerLayout.progress
+        val contentPanel = viewBinding.headerLayout.contentPanel
+
+        fun showProgress(){
+            progress.visibility = View.VISIBLE
+            progress.startAnimation(fadeIn)
+            contentPanel.visibility = View.INVISIBLE
+            contentPanel.startAnimation(fadeOut)
+        }
+
+        fun hideProgress(){
+            progress.visibility = View.INVISIBLE
+            progress.startAnimation(fadeOut)
+            contentPanel.visibility = View.VISIBLE
+            contentPanel.startAnimation(fadeIn)
+        }
+
+        dashboardViewModel.progress.observe(viewLifecycleOwner, {
+            when (it){
+                true -> showProgress()
+                false -> hideProgress()
+            }
+        })
+    }
+
 }

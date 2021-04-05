@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:bottom="@dimen/global_small_padding"
+        android:left="@dimen/global_small_padding"
+        android:right="@dimen/global_small_padding"
+        android:top="@dimen/global_small_padding">
+
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="2dp"
+                android:color="@color/blue_400" />
+        </shape>
+    </item>
+</layer-list>

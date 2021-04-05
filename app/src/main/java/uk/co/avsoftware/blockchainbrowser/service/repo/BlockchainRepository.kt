@@ -1,7 +1,6 @@
 package uk.co.avsoftware.blockchainbrowser.service.repo
 
 import io.reactivex.rxjava3.core.Single
-import kotlinx.coroutines.Deferred
 import uk.co.avsoftware.blockchainbrowser.service.model.Block
 import uk.co.avsoftware.blockchainbrowser.service.model.Stats
 import uk.co.avsoftware.blockchainbrowser.service.model.Transaction
@@ -21,5 +20,5 @@ interface BlockchainRepository {
 
     fun getLatestBlock(): Single<Block>
 
-    fun getGeneralStats(): Deferred<Stats>
+    suspend fun getGeneralStats(): Stats
 }

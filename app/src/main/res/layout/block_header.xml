@@ -13,28 +13,30 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.dashboard.DashboardFragment">
+        >
 
         <ProgressBar
             android:id="@+id/progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{vm.progress ? View.VISIBLE : View.INVISIBLE}"
+            android:layout_gravity="center_horizontal"
+            android:padding="@dimen/global_medium_padding"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView"
-            style="@style/MainText.medium"
-            android:layout_width="310dp"
-            android:layout_height="19dp"
-            android:text="@string/block_header_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:id="@+id/contentPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:visibility="invisible"
+        style="@style/HeaderContainer"
+        android:orientation="vertical"
+        tools:context=".ui.dashboard.DashboardFragment">
 
         <TextView
             android:id="@+id/block_height_view"
@@ -47,22 +49,21 @@
             app:layout_constraintEnd_toStartOf="@+id/progress"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
             tools:text="Block Height: 675759"/>
 
         <TextView
             android:id="@+id/block_hash_view"
-            style="@style/BlockHash"
-            android:layout_width="wrap_content"
+            style="@style/ReversedHeader"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/global_small_padding"
             android:text="@{@string/block_header_block_hash(vm.latestBlock.hash)}"
-            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/block_height_view"
             tools:text="Hash: 0000000000000000000a2a0731e79f977c689e4f3bf0a72eec99abe3c3478e52" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+    </FrameLayout>
 
 </layout>
