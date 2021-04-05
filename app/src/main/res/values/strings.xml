@@ -10,7 +10,11 @@
     <string name="home_block_count">"Block Count: %1$d</string>
     <string name="home_latest_hash">"Latest Hash: %1$s"</string>
 
-    <string name="block_header_block_height">"Block Height: %1$d</string>
+    <string name="block_header_block_height_transactions">"Block Height: %1$d, number of transactions: %2$d</string>
     <string name="block_header_block_hash">"Hash: %1$s"</string>
+
+    <string name="transaction_hash">"Hash: %1$s"</string>
+    <string name="transaction_block_height">"Block height: %1$s"</string>
+    <string name="transaction_inputs_outputs">"Inputs: %1$d, Outputs: %2$d</string>
 
 </resources>
