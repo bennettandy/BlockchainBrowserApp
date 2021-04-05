@@ -1,11 +1,16 @@
 package uk.co.avsoftware.blockchainbrowser.ui.dashboard
 
+import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +39,8 @@ class DashboardFragment : Fragment() {
 
         setUpRecyclerView()
 
+        setUpProgressView()
+
         return viewBinding.root
     }
 
@@ -50,5 +57,31 @@ class DashboardFragment : Fragment() {
             adapter.transactions = it.tx
             adapter.notifyDataSetChanged()
         })
+    }
+
+    private fun setUpProgressView(){
+        dashboardViewModel.progress.observe(viewLifecycleOwner, Observer {
+            when (it){
+                true -> showProgress()
+                false -> hideProgress()
+            }
+        })
+    }
+
+    private fun showProgress(){
+        viewBinding.headerLayout.progress.visibility = View.VISIBLE
+        viewBinding.headerLayout.contentPanel.visibility = View.INVISIBLE
+        
+        val fadeIn: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
+        viewBinding.headerLayout.contentPanel.startAnimation(fadeIn)
+    }
+
+    private fun hideProgress(){
+        viewBinding.headerLayout.progress.visibility = View.INVISIBLE
+        viewBinding.headerLayout.contentPanel.visibility = View.VISIBLE
+
+        val fadeIn: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+        viewBinding.headerLayout.contentPanel.startAnimation(fadeIn)
+
     }
 }

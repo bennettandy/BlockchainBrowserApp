@@ -24,7 +24,7 @@
 
     <!-- Header Container -->
     <style name="HeaderContainer">
-        <item name="android:background">?colorSecondary</item>
+        <item name="android:background">?lightBackgroundColor</item>
         <item name="android:padding">@dimen/global_small_padding</item>
     </style>
 

@@ -13,7 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
 
-        <item name="headerBackgroundColor">@color/grey_500</item>
+        <item name="lightBackgroundColor">@color/purple_200</item>
+        <item name="headerBackgroundColor">@color/purple_700</item>
         <item name="backgroundGradientStart">@color/blue_200</item>
         <item name="backgroundGradientEnd">@color/blue_800</item>
 

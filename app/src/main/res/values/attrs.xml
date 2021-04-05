@@ -5,5 +5,6 @@
     <attr name="headerBackgroundColor" format="reference" />
     <attr name="backgroundGradientStart" format="reference" />
     <attr name="backgroundGradientEnd" format="reference" />
+    <attr name="lightBackgroundColor" format="reference" />
 
 </resources>
