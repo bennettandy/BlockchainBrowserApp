@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/global_medium_padding"
-            android:text="@{@string/block_header_block_height(vm.latestBlock.height)}"
+            android:text="@{@string/block_header_block_height_transactions(vm.latestBlock.height, vm.latestBlock.tx.size())}"
             android:textAlignment="center"
             app:layout_constraintEnd_toStartOf="@+id/progress"
             app:layout_constraintHorizontal_bias="0.0"

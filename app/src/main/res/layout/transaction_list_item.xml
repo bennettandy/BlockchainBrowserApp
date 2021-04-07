@@ -17,7 +17,6 @@
         android:adjustViewBounds="true">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cvEmployee"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -28,22 +27,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/global_small_padding"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/hash"
+                    style="@style/MainText.small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:padding="4dp"
-                    android:text="@{transaction.hash}"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    bind:layout_constraintEnd_toEndOf="parent"
-                    bind:layout_constraintTop_toTopOf="parent"
-                    tools:text="Morris" />
+                    android:text="@{@string/transaction_hash(transaction.hash)}"
+                    android:singleLine="true"
+                    tools:text="3f112d15db42017fab99aa7eed8cb391ec0c959ef90e20fd1ab6a7c68f7ad2f6" />
+                <TextView
+                    style="@style/MainText.small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/transaction_inputs_outputs(transaction.inputs.size(), transaction.out.size())}"
+                    tools:text="10" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
