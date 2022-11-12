@@ -19,6 +19,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        
     }
 
     buildTypes {
@@ -28,6 +29,12 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+    viewBinding {
+        android.buildFeatures.viewBinding = true
+    }
+    dataBinding {
+        android.buildFeatures.dataBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -59,7 +66,7 @@ dependencies {
     implementation(Compose.activityCompose)
 
     implementation(DaggerHilt.hiltAndroid)
-    implementation("androidx.core:core-ktx:+")
+    implementation(AndroidX.coreKtx)
     kapt(DaggerHilt.hiltCompiler)
 
     implementation(AndroidX.coreKtx)
@@ -69,10 +76,17 @@ dependencies {
 
     implementation(Google.material)
 
+    implementation(Navigation.navigationFragment)
+    implementation(Navigation.navigationUi)
+
+    implementation(Google.gson)
+
     implementation(Retrofit.okHttp)
     implementation(Retrofit.retrofit)
     implementation(Retrofit.okHttpLoggingInterceptor)
     implementation(Retrofit.moshiConverter)
+
+    implementation(Timber.timber)
 
     kapt(Room.roomCompiler)
     implementation(Room.roomKtx)

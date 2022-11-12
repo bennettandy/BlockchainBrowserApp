@@ -1,6 +1,5 @@
 package uk.co.avsoftware.blockchainbrowser.service.repo
 
-import io.reactivex.rxjava3.core.Single
 import uk.co.avsoftware.blockchainbrowser.service.model.Block
 import uk.co.avsoftware.blockchainbrowser.service.model.Stats
 import uk.co.avsoftware.blockchainbrowser.service.model.Transaction
@@ -8,17 +7,17 @@ import java.math.BigDecimal
 
 interface BlockchainRepository {
 
-    fun currentHashRateGigaHashes(): Single<Long>
+    suspend fun currentHashRateGigaHashes(): Long
 
-    fun getDifficulty(): Single<BigDecimal>
+    suspend fun getDifficulty(): BigDecimal
 
-    fun getBlockCount(): Single<Long>
+    suspend fun getBlockCount(): Long
 
-    fun getLatestHash(): Single<String>
+    suspend fun getLatestHash(): String
 
-    fun getTransactionByHash(txHash: String): Single<Transaction>
+    suspend fun getTransactionByHash(txHash: String): Transaction?
 
-    fun getLatestBlock(): Single<Block>
+    suspend fun getLatestBlock(): Block?
 
-    suspend fun getGeneralStats(): Stats
+    suspend fun getGeneralStats(): Stats?
 }

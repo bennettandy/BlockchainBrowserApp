@@ -50,11 +50,11 @@ class DashboardFragment : Fragment() {
         // Set Adapter
         val adapter = BlockDataAdapter(emptyList())
         viewBinding.recyclerView.adapter = adapter
-        dashboardViewModel.latestBlock.observe(viewLifecycleOwner, {
-            adapter.transactions = it.tx
-            adapter.notifyDataSetChanged()
-            viewBinding.recyclerView.scheduleLayoutAnimation() // otherwise item animation doesn't run
-        })
+//        dashboardViewModel.latestBlock.observe(viewLifecycleOwner, {
+//            adapter.transactions = it.tx
+//            adapter.notifyDataSetChanged()
+//            viewBinding.recyclerView.scheduleLayoutAnimation() // otherwise item animation doesn't run
+//        })
     }
 
     private fun setUpProgressView(){
