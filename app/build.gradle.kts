@@ -19,11 +19,13 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        
     }
 
     buildTypes {
         getByName("release") {
+            isMinifyEnabled = false
+        }
+        getByName("debug") {
             isMinifyEnabled = false
         }
     }

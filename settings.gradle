@@ -1,3 +1,6 @@
 include ':app'
 rootProject.name = "BlockchainBrowser"
 include ':core'
+include ':onboarding'
+include ':onboarding:onboarding_presentation'
+include ':onboarding:onboarding_domain'

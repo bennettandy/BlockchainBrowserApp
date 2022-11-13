@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.core"
-    compileSdk = ProjectConfig.compileSdk
+    compileSdkVersion(ProjectConfig.compileSdk)
 
     defaultConfig {
         applicationId = "com.example.core"
